@@ -50,3 +50,22 @@ class TestKoMRC:
 
     def __len__(self) -> int:
         return len(self._indices)
+
+class TestDataset(Dataset):
+    def __init__(self, dataset):
+        self.question, self.context, self.guid= self.make_dataset(dataset)
+
+    def make_dataset(self, dataset):
+        context, question, guid = [], [], []
+        for i, data in enumerate(dataset) :
+          context.append(data['context'])
+          question.append(data['question'])
+          guid.append(data['guid'])
+        return question, context, guid
+        
+    def __len__(self):
+        return len(self.question)
+
+    def __getitem__(self, idx):
+        return self.question[idx], self.context[idx] , self.guid[idx]
+    
