@@ -32,3 +32,5 @@ wandb.login()
 
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 device, torch.cuda.device_count()
+
+tokenizer = BertTokenizerFast.from_pretrained(model_name)
